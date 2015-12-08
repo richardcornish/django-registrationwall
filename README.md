@@ -6,7 +6,7 @@ The app is almost entirely a basic [mixin](https://docs.djangoproject.com/en/1.9
 
 The app stores the visited resources into the session, whose session ID is stored in a cookie in the user's web browser. The app does not employ more sophisticated user tracking like IP detection and storage.
 
-Note that the app is not a "true" paywall in the sense that it checks if an authenticated user is a valid "subscriber" or other such classification of customer. Checking for additional validity beyond an authenticated user would require additional data stored on either a customer user model or in another connected app and is outside the scope of this app. It might be easier to think of this app as a "registration wall" although customization for a more typical paywall scenario exists.
+Note that the app is not a "true" paywall in the sense that it checks if an authenticated user is a valid "subscriber" or other such classification of customer. Checking for additional validity beyond an authenticated user would require additional data stored on either a custom user model or in another connected app and is outside the scope of this app. It might be easier to think of this app as a "registration wall" although customization for a more typical paywall scenario exists.
 
 ## Requirements
 
@@ -60,7 +60,7 @@ PAYWALL_EXPIRE = 30  # days
 News organizations often allow visitors coming from a social website, usually Google News, a "free pass" that does not count toward their free resource limit. The app's default behavior mimics this practice with a whitelist of hosts, whose default is Google, Facebook, and Twitter. Customize the list with your own hosts or empty it (`[]`) to prevent "free pass" behavior.
 
 ```
-# Coming from Google, Facebook, or Twitter is always free
+# Coming from Google, Facebook, or Twitter is free
 PAYWALL_SOCIAL = [
     'google.com',
     'facebook.com',
