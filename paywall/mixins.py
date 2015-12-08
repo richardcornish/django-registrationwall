@@ -12,7 +12,10 @@ class RaisePaywallMixin(AccessMixin):
     based on their browser session, to be less than the article limit setting
     """
     def passed_social(self):
-        return self.request.META['HTTP_REFERER'] in PAYWALL_SOCIAL
+        try:
+            return self.request.META['HTTP_REFERER'] in PAYWALL_SOCIAL
+        except KeyError:
+            return False
 
     def exceeded_limit(self):
         if 'paywall_list' in self.request.session:
