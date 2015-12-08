@@ -34,7 +34,7 @@ Note that the app is not a "true" paywall in the sense that it checks if an auth
 	```
 	from django.views.generic import DetailView
 	
-	from paywall import RaisePaywallMixin
+	from paywall.mixins import RaisePaywallMixin
 	
 	
 	class ArticleDetailView(RaisePaywallMixin, DetailView):
@@ -75,7 +75,7 @@ You can further customize much of the functionality of `RaisePaywallMixin` becau
 In your own code, perhaps in a `mixins.py`, subclass `RaisePaywallMixin` and set [`raise_exception`](https://docs.djangoproject.com/en/1.9/topics/auth/default/#django.contrib.auth.mixins.AccessMixin.raise_exception) to `True`.
 
 ```
-from paywall import RaisePaywallMixin
+from paywall.mixins import RaisePaywallMixin
 
 
 class MyCustomRaisePaywallMixin(RaisePaywallMixin):
@@ -97,7 +97,7 @@ class ArticleDetailView(MyCustomRaisePaywallMixin, DetailView):
 If you wanted a "true" paywall, override the `dispatch` method for handling authenticated users with whatever check you have on valid, likely paying, users.
 
 ```
-from paywall import RaisePaywallMixin
+from paywall.mixins import RaisePaywallMixin
 
 
 class MyCustomRaisePaywallMixin(RaisePaywallMixin):
