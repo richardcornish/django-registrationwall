@@ -3,23 +3,23 @@
 
 {% block content %}
 
-    {# django-paywall #}
-    <div class="alert alert-warning" role="alert">
-        {% if request.session.paywall_list_count <= request.session.paywall_limit %}
-        <p>You read {{ request.session.paywall_list_count }} of your free {{ request.session.paywall_limit }} article{{ request.session.paywall_limit|pluralize }} for {{ request.session.paywall_expire }} days. <a href="#">Subscribe today</a> to support quality journalism.</p>
-        {% endif %}
-    </div>
-    {# end django-paywall #}
+{# django-paywall #}
+<div class="alert alert-warning" role="alert">
+    {% if request.session.paywall_list_count <= request.session.paywall_limit %}
+    <p>You read {{ request.session.paywall_list_count }} of your free {{ request.session.paywall_limit }} article{{ request.session.paywall_limit|pluralize }} for {{ request.session.paywall_expire }} days. <a href="#">Subscribe today</a> to support quality journalism.</p>
+    {% endif %}
+</div>
+{# end django-paywall #}
 
-    <h1>{{ article.headline }}</h1>
+<h1>{{ article.headline }}</h1>
 
-    {{ article.body }}
+<p>{{ article.body }}</p>
 
-    <nav>
-        <ul class="pager">
-            <li class="{% if not article.get_previous_by_pub_date %}disabled{% endif %}"><a href="{{ article.get_previous_by_pub_date.get_absolute_url }}">Previous</a></li>
-            <li class="{% if not article.get_previous_by_pub_date %}disabled{% endif %}"><a href="{{ article.get_next_by_pub_date.get_absolute_url }}">Next</a></li>
-        </ul>
-    </nav>
+<nav>
+    <ul class="pager">
+        <li class="{% if not article.get_previous_by_pub_date %}disabled{% endif %}"><a href="{{ article.get_previous_by_pub_date.get_absolute_url }}">Previous</a></li>
+        <li class="{% if not article.get_next_by_pub_date %}disabled{% endif %}"><a href="{{ article.get_next_by_pub_date.get_absolute_url }}">Next</a></li>
+    </ul>
+</nav>
 
 {% endblock %}

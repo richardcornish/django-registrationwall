@@ -3,9 +3,6 @@
 
 {% block content %}
 
-<h1>Log in</h1>
-
-
 {# django-paywall #}
 <div class="alert alert-info" role="alert">
     {% if request.session.paywall_list_count > request.session.paywall_limit %}
@@ -14,6 +11,7 @@
 </div>
 {# end django-paywall #}
 
+<h1>Log in</h1>
 
 {% if form.errors %}
 <div class="alert alert-danger">
