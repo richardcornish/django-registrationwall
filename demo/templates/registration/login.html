@@ -4,11 +4,11 @@
 {% block content %}
 
 {# django-paywall #}
+{% if request.session.paywall_list_count > request.session.paywall_limit %}
 <div class="alert alert-info" role="alert">
-    {% if request.session.paywall_list_count > request.session.paywall_limit %}
-        <p>Thank you for reading. You reached the limit of {{ request.session.paywall_limit }} free article{{ request.session.paywall_limit|pluralize }} for {{ request.session.paywall_expire }} days. Please log in as a subscriber to fund the work of quality journalism.</p>
-    {% endif %}
+    <p>Thank you for reading. You reached the limit of {{ request.session.paywall_limit }} free article{{ request.session.paywall_limit|pluralize }} for {{ request.session.paywall_expire }} days. Please log in as a subscriber to fund the work of quality journalism.</p>
 </div>
+{% endif %}
 {# end django-paywall #}
 
 <h1>Log in</h1>

@@ -4,11 +4,11 @@
 {% block content %}
 
 {# django-paywall #}
+{% if request.session.paywall_list_count <= request.session.paywall_limit %}
 <div class="alert alert-warning" role="alert">
-    {% if request.session.paywall_list_count <= request.session.paywall_limit %}
     <p>You read {{ request.session.paywall_list_count }} of your free {{ request.session.paywall_limit }} article{{ request.session.paywall_limit|pluralize }} for {{ request.session.paywall_expire }} days. <a href="#">Subscribe today</a> to support quality journalism.</p>
-    {% endif %}
 </div>
+{% endif %}
 {# end django-paywall #}
 
 <h1>{{ article.headline }}</h1>
