@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <h1>Articles</h1>
+
+    {% for article in article_list %}
+    <li><a href="{{ article.get_absolute_url }}">{{ article.headline }}</a></li>
+    {% endfor %}
+
+{% endblock %}

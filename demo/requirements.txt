@@ -1,0 +1,5 @@
+Django==1.9
+django-debug-toolbar==1.4
+-e git+https://github.com/richardcornish/django-paywall.git@f92b943d3eaf94654cbd225ceef8728bd5f42b6f#egg=django_paywall-master
+sqlparse==0.1.18
+wheel==0.24.0

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Django Paywall demo</title>
+</head>
+<body>
+
+<header>
+    <p><a href="{% url 'home' %}">Django Paywall demo</a></p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'article_list' %}">Articles</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Log out</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Log in</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<main>
+{% block content %}
+{% endblock %}
+</main>
+
+</body>
+</html>

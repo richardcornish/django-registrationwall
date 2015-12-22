@@ -68,6 +68,10 @@ PAYWALL_SOCIAL = [
 ]
 ```
 
+## Demo
+
+The repo contains a sample Django project that shows how a typical intergration might occur. It contains a fixture with sample data to quickly test it out.
+
 ## Customization
 
 You can further customize much of the functionality of `RaisePaywallMixin` because it inherits from Django's [`AccessMixin`](https://docs.djangoproject.com/en/1.9/topics/auth/default/#django.contrib.auth.mixins.AccessMixin). Say you wanted to raise a [`PermissionDenied`](https://docs.djangoproject.com/en/1.9/ref/exceptions/#permissiondenied) exception, which would likely trip your [`403.html` template](https://docs.djangoproject.com/en/1.9/ref/views/#the-403-http-forbidden-view), instead of redirecting to the login URL.
@@ -128,23 +132,3 @@ The app stores not just the visited resources in the session but several additio
 - `{{ request.session.paywall_expire }}`
 
     The number of days until a user can browse free resources again
-
-For example, the [login template](https://docs.djangoproject.com/en/1.9/topics/auth/default/#django.contrib.auth.views.login) might look like:
-
-```
-{% extends "base.html" %}
-
-{% block content %}
-    {% if request.session.paywall_list_count >= request.session.paywall_limit %}
-        <p>We're sorry, but you reached the limit of {{ request.session.paywall_limit }} free news articles for {{ request.session.paywall_expire }} days.</p>
-        <p>Please become a subscriber to fund the important work of journalism.</p>
-        <p>You read these great articles:</p>
-        <ul>
-            {% for article in request.session.paywall_list %}
-            <li><a href="{{ article.get_absolute_url }}">{{ article.headline }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {# Include login stuff like the form, error handling, etc. #}
-{% endblock %}
-```
