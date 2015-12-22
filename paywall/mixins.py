@@ -36,9 +36,9 @@ class RaisePaywallMixin(AccessMixin):
             })
 
         self.request.session['paywall_list'] = paywall_list
-        self.request.session['paywall_list_count'] = str(len(self.request.session['paywall_list']))
-        self.request.session['paywall_limit'] = str(PAYWALL_LIMIT)
-        self.request.session['paywall_expire'] = str(PAYWALL_EXPIRE)
+        self.request.session['paywall_list_count'] = len(self.request.session['paywall_list'])
+        self.request.session['paywall_limit'] = PAYWALL_LIMIT
+        self.request.session['paywall_expire'] = PAYWALL_EXPIRE
         return len(self.request.session['paywall_list']) > PAYWALL_LIMIT
 
     def dispatch(self, request, *args, **kwargs):
