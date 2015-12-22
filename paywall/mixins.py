@@ -18,13 +18,23 @@ class RaisePaywallMixin(AccessMixin):
             return False
 
     def exceeded_limit(self):
+
+        # Use session if already exists or create a new one
         if 'paywall_list' in self.request.session:
             paywall_list = self.request.session['paywall_list']
         else:
             seconds = 60 * 60 * 24 * PAYWALL_EXPIRE
             self.request.session.set_expiry(seconds)
             paywall_list = []
-        paywall_list.append(self.get_object())
+
+        # Count articles if visiting for first time
+        if not next((article for article in paywall_list if article['app_label'] == self.get_object()._meta.app_label and article['pk'] == self.get_object().pk), None):
+            paywall_list.append({
+                'app_label': self.get_object()._meta.app_label,
+                'pk': self.get_object().pk,
+                'url': self.get_object().get_absolute_url()
+            })
+
         self.request.session['paywall_list'] = paywall_list
         self.request.session['paywall_list_count'] = str(len(self.request.session['paywall_list']))
         self.request.session['paywall_limit'] = str(PAYWALL_LIMIT)
