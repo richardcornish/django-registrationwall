@@ -1,26 +1,19 @@
-import os
 from setuptools import setup
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
-    README = readme.read()
-
-# allow setup.py to be run from any path
-os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-paywall',
-    version='0.1',
-    packages=[
-        'paywall',
-        # 'paywall.tests'
-    ],
-    include_package_data=True,
-    license='BSD License',
+    version='0.1.0',
     description='A Django app to raise a paywall for content websites',
-    long_description=README,
-    url='https://github.com/richardcornish/django-paywall',
+    long_description=open('README.md').read(),
+    license='BSD License',
     author='Richard Cornish',
     author_email='rich@richardcornish.com',
+    url='https://github.com/richardcornish/django-paywall',
+    zip_safe=False,
+    platforms=[
+        'OS Independent'
+    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -35,6 +28,11 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
+    packages=[
+        'paywall',
+        'paywall.tests'
+    ],
+    include_package_data=True,
     install_requires=[
         'django>=1.9'
     ],
