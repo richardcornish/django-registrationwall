@@ -3,6 +3,9 @@
 {% load i18n regwall_tags %}
 
 
+{% block title %}Login &#183; {{ block.super }}{% endblock %}
+
+
 {% block content %}
 
 {% get_regwall_list as regwall_list %}
