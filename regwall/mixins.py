@@ -25,9 +25,9 @@ class RaiseRegWallMixin(AccessMixin):
         return social_list
 
     def get_regwall_list(self):
-        if 'regwall_list' in self.request.session:
+        try:
             return self.request.session['regwall_list']
-        else:
+        except KeyError:
             seconds = self.get_expire_seconds()
             self.request.session.set_expiry(seconds)
             self.request.session['regwall_list'] = []
