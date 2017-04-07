@@ -26,13 +26,12 @@ class RaiseRegWallMixin(AccessMixin):
 
     def get_regwall_list(self):
         if 'regwall_list' in self.request.session:
-            regwall_list = self.request.session['regwall_list']
+            return self.request.session['regwall_list']
         else:
             seconds = self.get_expire_seconds()
             self.request.session.set_expiry(seconds)
             self.request.session['regwall_list'] = []
-            regwall_list = self.request.session['regwall_list']
-        return regwall_list
+            return self.request.session['regwall_list']
 
     def increment_regwall_list(self):
         obj = self.get_object()
