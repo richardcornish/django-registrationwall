@@ -14,7 +14,7 @@ from . import settings
 
 
 class RaiseRegWallMixin(AccessMixin):
-    """View mixin that increment's an anonymous user's article count."""
+    """View mixin that increments an anonymous user's article count."""
 
     def get_expire_seconds(self):
         return 60 * 60 * 24 * settings.REGWALL_EXPIRE
