@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load i18n regwall_tags %}
+{% load i18n %}
 
 
 {% block title %}{{ article.headline }} &#183; {{ block.super }}{% endblock %}
@@ -8,14 +8,7 @@
 
 {% block content %}
 
-{% get_regwall_list as regwall_list %}
-{% get_regwall_list_read as regwall_list_read %}
-{% get_regwall_limit as regwall_limit %}
-{% get_regwall_expire as regwall_expire %}
-
-{% if regwall_list_read|length > 0 %}
-<p>You read {{ regwall_list_read|length }} of your {{ regwall_limit }} free article{{ regwall_limit|pluralize }} for {{ regwall_expire }} day{{ regwall_expire|pluralize }}. <a href="{% url 'login' %}">Log in or register to read unlimited articles</a>.</p>
-{% endif %}
+{% include 'regwall/detail.html' %}
 
 <h1>{{ article.headline }}</h1>
 
