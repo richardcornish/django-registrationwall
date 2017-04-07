@@ -17,7 +17,7 @@ setup(
     zip_safe=False,
     include_package_data=True,
     packages=find_packages(),
-    test_suite='podcast.tests',
+    test_suite='regwall.tests',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
