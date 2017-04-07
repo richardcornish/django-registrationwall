@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load i18n regwall_tags %}
+
+
+{% block title %}{{ article.headline }} &#183; {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+{% get_regwall_list as regwall_list %}
+{% get_regwall_list_read as regwall_list_read %}
+{% get_regwall_limit as regwall_limit %}
+{% get_regwall_expire as regwall_expire %}
+
+{% if regwall_list_read|length > 0 %}
+<p>You read {{ regwall_list_read|length }} of your {{ regwall_limit }} free article{{ regwall_limit|pluralize }} for {{ regwall_expire }} day{{ regwall_expire|pluralize }}. <a href="{% url 'login' %}">Log in or register to read unlimited articles</a>.</p>
+{% endif %}
+
+<h1>{{ article.headline }}</h1>
+
+<p>{{ article.body }}</p>
+
+{% if article.get_previous_by_pub_date or article.get_next_by_pub_date %}
+<ul>
+    {% if article.get_next_by_pub_date %}
+    <li><a href="{{ article.get_next_by_pub_date.get_absolute_url }}">&larr; {{ article.get_next_by_pub_date.headline }}</a></li>
+    {% endif %}
+    {% if article.get_previous_by_pub_date %}
+    <li><a href="{{ article.get_previous_by_pub_date.get_absolute_url }}">{{ article.get_previous_by_pub_date.headline }} &rarr;</a></li>
+    {% endif %}
+</ul>
+{% endif %}
+
+{% endblock %}

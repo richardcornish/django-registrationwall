@@ -1,39 +1,36 @@
-from setuptools import setup
+from __future__ import unicode_literals
+
+import os
+
+from setuptools import find_packages, setup
 
 
 setup(
-    name='django-paywall',
+    name='django-registrationwall',
     version='0.1.0',
-    description='A Django app to raise a paywall for content websites',
-    long_description=open('README.md').read(),
-    license='BSD License',
+    description='A Django mixin application to raise a registration or paywall',
+    long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     author='Richard Cornish',
     author_email='rich@richardcornish.com',
-    url='https://github.com/richardcornish/django-paywall',
+    url='https://github.com/richardcornish/django-registrationwall',
+    license='BSD License',
     zip_safe=False,
-    platforms=[
-        'OS Independent'
-    ],
+    include_package_data=True,
+    packages=find_packages(),
+    test_suite='podcast.tests',
     classifiers=[
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Framework :: Django :: 1.9',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3',
         'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Internet :: WWW/HTTP :: Browsers',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-    ],
-    packages=[
-        'paywall',
-        'paywall.tests'
-    ],
-    include_package_data=True,
-    install_requires=[
-        'django>=1.9'
+        'Topic :: Internet :: WWW/HTTP :: Site Management',
+        'Topic :: Utilities'
     ],
 )

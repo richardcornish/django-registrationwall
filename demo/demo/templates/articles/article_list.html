@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+
+{% block title %}{% trans 'Articles' %} &#183; {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+<h1>{% trans 'Articles' %}</h1>
+
+{% if article_list %}
+<ol>
+    {% for article in article_list %}
+    <li><a href="{{ article.get_absolute_url }}">{{ article.headline }}</a></li>
+    {% endfor %}
+</ol>
+{% endif %}
+
+{% endblock %}
