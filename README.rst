@@ -45,3 +45,8 @@ Add to one of your ``views.py``.
 
    class ArticleDetailView(RaiseRegWallMixin, DetailView):
        model = Article
+
+Credit
+======
+
+Fake news articles credit goes to The Onion.
