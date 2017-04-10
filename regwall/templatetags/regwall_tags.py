@@ -17,7 +17,7 @@ def get_regwall_list_read(context):
     try:
         return request.session['regwall_list'][:settings.REGWALL_LIMIT]
     except KeyError:
-        return None
+        return []
 
 
 @register.simple_tag
