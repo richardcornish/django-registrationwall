@@ -15,6 +15,8 @@ Django Registration Wall
 
 **Django Registration Wall** is a `Django <https://www.djangoproject.com/>`_ `mixin <https://docs.djangoproject.com/en/1.10/topics/class-based-views/mixins/>`_ `application <https://docs.djangoproject.com/en/1.10/intro/reusable-apps/>`_ that limits an `anonymous user <https://docs.djangoproject.com/en/1.9/ref/contrib/auth/#anonymous-users>`_'s access to content, after which the user is redirected to the `login URL <https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-LOGIN_URL>`_. The behavior is modeled after the common `paywall <https://en.wikipedia.org/wiki/Paywall>`_ scenario.
 
+Fake news articles credit goes to The Onion.
+
 * `Package distribution <https://pypi.python.org/pypi/django-registrationwall>`_
 * `Code repository <https://github.com/richardcornish/django-registrationwall>`_
 * `Documentation <https://django-registrationwall.readthedocs.io/>`_
@@ -47,8 +49,3 @@ Add to one of your ``views.py``.
 
    class ArticleDetailView(RaiseRegWallMixin, DetailView):
        model = Article
-
-Credit
-======
-
-Fake news articles credit goes to The Onion.
