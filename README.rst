@@ -46,6 +46,8 @@ Add to one of your ``views.py``.
 
    from regwall.mixins import RaiseRegWallMixin
 
+   from .models import Article
+
 
    class ArticleDetailView(RaiseRegWallMixin, DetailView):
        model = Article
