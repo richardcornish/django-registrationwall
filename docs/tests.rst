@@ -10,13 +10,12 @@ However, you can also test the source code.
 .. code-block:: bash
 
    $ workon myvenv
-   $ cdsitepackages
    $ django-admin test regwall.tests --settings="regwall.tests.settings"
    
    Creating test database for alias 'default'...
-   ..........
+   ..
    ----------------------------------------------------------------------
-   Ran 1 test in 0.119s
+   Ran 2 tests in 0.229s
    
    OK
    Destroying test database for alias 'default'...

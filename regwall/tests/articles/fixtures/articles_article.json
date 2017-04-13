@@ -1,0 +1,112 @@
+[
+{
+    "model": "articles.article",
+    "pk": 1,
+    "fields": {
+        "headline": "Guy wearing thumb drive around neck wonders if you tried hard reboot",
+        "slug": "guy-wearing-thumb-drive-around-neck-wonders-if-you-tried-hard-reboot",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:04:33Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 2,
+    "fields": {
+        "headline": "Study finds majority of accidental heroin overdoses could be prevented with less heroin",
+        "slug": "study-finds-majority-accidental-heroin-overdoses-could-be-prevented-less-heroin",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:04:49Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 3,
+    "fields": {
+        "headline": "EPA urges nation to develop new air source",
+        "slug": "epa-urges-nation-develop-new-air-source",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:04:59Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 4,
+    "fields": {
+        "headline": "Astronomers discover previously unknown cluster of nothingness in deep space",
+        "slug": "astronomers-discover-previously-unknown-cluster-nothingness-deep-space",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:06:05Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 5,
+    "fields": {
+        "headline": "Elderly woman relieved to know she's tackled last technological advancement of lifetime",
+        "slug": "elderly-woman-relieved-know-shes-tackled-last-technological-advancement-lifetime",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:06:11Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 6,
+    "fields": {
+        "headline": "'Seek funding' step added to scientific method",
+        "slug": "seek-funding-step-added-scientific-method",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:06:21Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 7,
+    "fields": {
+        "headline": "Nation figured everything would run on some kind of cubes of blue energy by now",
+        "slug": "nation-figured-everything-would-run-some-kind-cubes-blue-energy-now",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:06:31Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 8,
+    "fields": {
+        "headline": "New study finds box still world's most popular container",
+        "slug": "new-study-finds-box-still-worlds-most-popular-container",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:06:40Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 9,
+    "fields": {
+        "headline": "Archaeologists discover ancient femur that could make mouthwatering broth",
+        "slug": "archaeologists-discover-ancient-femur-could-make-mouthwatering-broth",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:06:50Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 10,
+    "fields": {
+        "headline": "Groundbreaking study finds gratification can be deliberately postponed",
+        "slug": "groundbreaking-study-finds-gratification-can-be-deliberately-postponed",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:07:00Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 11,
+    "fields": {
+        "headline": "Jeff Bezos assures Amazon employees that HR working 100 hours a week to address their complaints",
+        "slug": "jeff-bezos-assures-amazon-employees-hr-working-100-hours-week-address-their-complaints",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et dictum eros. Mauris in ultricies nunc. Vivamus condimentum magna accumsan massa tempus, in aliquet neque consectetur.",
+        "pub_date": "2015-12-22T05:07:09Z"
+    }
+}
+]
