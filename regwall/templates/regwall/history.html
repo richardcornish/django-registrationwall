@@ -1,11 +1,11 @@
-{% load regwall_tags %}
+{% load i18n regwall_tags %}
 
 {% get_regwall_list as regwall_list %}
 {% get_regwall_list_read as regwall_list_read %}
 {% get_regwall_limit as regwall_limit %}
 
 {% if regwall_list|length >= regwall_limit %}
-<h2>You read these articles</h2>
+<h2>{% trans 'You read these articles' %}</h2>
 <ol>
     {% for article in regwall_list_read %}
     <li><a href="{{ article.url }}">{{ article.headline }}</a></li>
