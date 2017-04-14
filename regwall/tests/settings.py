@@ -43,6 +43,8 @@ TEMPLATES = [
     }
 ]
 
+print(TEMPLATES[0]['DIRS'])
+
 FIXTURE_DIRS = ['regwall/tests/articles/fixtures/']
 
 TIME_ZONE = 'UTC'
