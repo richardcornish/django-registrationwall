@@ -14,6 +14,8 @@ The app is almost entirely a `mixin <https://docs.djangoproject.com/en/1.11/topi
 
    from regwall.mixins import RaiseRegWallMixin
 
+   from .models import Article
+
 
    class ArticleDetailView(RaiseRegWallMixin, DetailView):
        model = Article
