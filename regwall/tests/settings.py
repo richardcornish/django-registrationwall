@@ -43,6 +43,8 @@ TEMPLATES = [
     }
 ]
 
+FIXTURE_DIRS = ['regwall/tests/articles/fixtures/']
+
 TIME_ZONE = 'UTC'
 
 USE_TZ = True
