@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'regwall',
     'regwall.tests.articles',
+    'regwall.tests.registration',
 ]
 
 MIDDLEWARE = [
@@ -38,12 +39,10 @@ DATABASES = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'tests', 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
     }
 ]
-
-FIXTURE_DIRS = ['regwall/tests/articles/fixtures/']
 
 TIME_ZONE = 'UTC'
 
