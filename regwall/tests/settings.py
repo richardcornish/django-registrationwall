@@ -12,7 +12,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'regwall.tests.articles',
-    'regwall.tests.registration',
     'regwall',
 ]
 
