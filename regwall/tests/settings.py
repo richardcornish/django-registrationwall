@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     'regwall.tests.articles',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -42,10 +42,6 @@ TEMPLATES = [
         'APP_DIRS': True,
     }
 ]
-
-print(TEMPLATES[0]['DIRS'])
-
-FIXTURE_DIRS = ['regwall/tests/articles/fixtures/']
 
 TIME_ZONE = 'UTC'
 
