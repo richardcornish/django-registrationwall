@@ -58,6 +58,8 @@ USE_TZ = True
 
 ROOT_URLCONF = 'regwall.tests.urls'
 
+ALLOWED_HOSTS = ['*']
+
 import django
 if hasattr(django, 'setup'):  # < Django 1.9
     django.setup()
