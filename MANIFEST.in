@@ -5,5 +5,4 @@ recursive-include demo *
 recursive-include docs *
 recursive-include regwall/templates *
 recursive-include regwall/tests/articles/fixtures *
-recursive-include regwall/tests/articles/templates *
-recursive-include regwall/tests/registration/templates *
+recursive-include regwall/tests/templates *

@@ -16,7 +16,11 @@ setup(
     license='BSD License',
     zip_safe=False,
     include_package_data=True,
-    packages=find_packages(),
+    packages=[
+        'regwall',
+        'regwall.tests',
+        'regwall.tests.articles',
+    ],
     test_suite='regwall.tests',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
