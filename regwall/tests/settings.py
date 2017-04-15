@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'regwall',
     'regwall.tests.articles',
+    'regwall.tests.registration',
 ]
 
 MIDDLEWARE_CLASSES = [
