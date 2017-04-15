@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+
+{% block title %}{% trans 'Log in' %} &#183; {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+{% include 'regwall/login.html' %}
+
+<h1>{% trans 'Log in' %}</h1>
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in form.non_field_errors %}
+        <li class="text-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log in</button>
+</form>
+
+<p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+
+<p><a href="#">Register for an account.</a></p>
+
+{% include 'regwall/history.html' %}
+
+{% endblock %}
