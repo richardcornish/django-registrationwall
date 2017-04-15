@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 import os
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 setup(
@@ -16,11 +16,7 @@ setup(
     license='BSD License',
     zip_safe=False,
     include_package_data=True,
-    packages=[
-        'regwall',
-        'regwall.tests',
-        'regwall.tests.articles',
-    ],
+    packages=find_packages(),
     test_suite='regwall.tests',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
