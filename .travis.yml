@@ -20,6 +20,5 @@ install:
     - pip install -q Django==$DJANGO_VERSION
     - python setup.py -q install
     - django-admin migrate
-    - django-admin loaddata articles_article.json
 script:
     - django-admin test regwall.tests
