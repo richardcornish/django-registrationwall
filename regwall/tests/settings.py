@@ -51,6 +51,8 @@ TEMPLATES = [
     }
 ]
 
+print(TEMPLATES[0]['DIRS'])
+
 TIME_ZONE = 'UTC'
 
 USE_TZ = True
