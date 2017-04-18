@@ -20,8 +20,8 @@ class RaiseRegWallMixin(AccessMixin):
         return 60 * 60 * 24 * settings.REGWALL_EXPIRE
 
     def get_social_list(self):
-        social_list = settings.REGWALL_SOCIAL
-        social_list.extend(['www.' + social for social in social_list])
+        social_list = list(settings.REGWALL_SOCIAL)
+        social_list.extend(['www.' + social for social in settings.REGWALL_SOCIAL])
         return social_list
 
     def get_regwall_list(self):
