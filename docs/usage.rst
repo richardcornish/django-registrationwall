@@ -52,8 +52,8 @@ Assign any of the tags' output to a variable with the ``as`` syntax.
 
    {% get_regwall_limit as regwall_limit %}
    {% get_regwall_expire as regwall_expire %}
-   {% get_regwall_list as regwall_list %}
-   {% get_regwall_list_read as regwall_list_read %}
+   {% get_regwall_attempts as regwall_attempts %}
+   {% get_regwall_successes as regwall_successes %}
 
 Use the assigned variables as you like.
 
@@ -84,47 +84,45 @@ Gets the number of days until the consumed resources count is reset to zero.
 
    <p>The limit is {{ regwall_limit }} articles for {{ regwall_expire }} days.</p>
 
-``{% get_regwall_list %}``
---------------------------
+``{% get_regwall_attempts %}``
+------------------------------
 
-Gets a list of the consumed resources. Each item of the list is a dictionary, which contains the ``app_label``, ``id``, ``headline``, and ``url`` of a single resource. You will probably use the ``length`` filter on ``get_regwall_list`` to get the number of consumed resources.
-
-.. code-block:: django
-
-   {% get_regwall_list as regwall_list %}
-
-   <p>You read {{ regwall_list|length }} free articles.</p>
-
-Use ``get_regwall_list`` to check against the result of ``get_regwall_limit``.
+Gets a list of the attempted consumed resources. The mixin logs each attempt a user makes for a request, which is not necessarily the same as a successful request. Each item of the list is a dictionary, which contains the ``app_label``, ``id``, ``headline``, and ``url`` of a single resource. You will probably use the ``length`` filter on ``get_regwall_attempts`` to get the number of attempted consumed resources.
 
 .. code-block:: django
 
-   {% get_regwall_list as regwall_list %}
+   {% get_regwall_attempts as regwall_attempts %}
+
+   <p>You read {{ regwall_attempts|length }} free articles.</p>
+
+Use ``get_regwall_attempts`` to check against the result of ``get_regwall_limit``.
+
+.. code-block:: django
+
+   {% get_regwall_attempts as regwall_attempts %}
    {% get_regwall_limit as regwall_limit %}
 
-   {% if regwall_list|length >= regwall_limit %}
+   {% if regwall_attempts|length >= regwall_limit %}
    <p>You read all of your {{ regwall_limit }} articles for {{ regwall_expire }} days.</p>
    {% endif %}
 
-``{% get_regwall_list_read %}``
+``{% get_regwall_successes %}``
 -------------------------------
 
-Similar to ``get_regwall_list``, but ``get_regwall_list_read`` removes the last consumed resource from the list, the reason being that ``get_regwall_list`` must contain the number of *attempted* resources to check against.
-
-For example, if the ``REGWALL_LIMIT`` was ``10``, then ``get_regwall_list`` must save up to and including the 11th resource in that it can check that ``11`` is greater than ``10``, raising the registration wall. However, the user didn't *successfully* consume the 11th resource, but merely attempted to. You can still use ``get_regwall_list`` in your logic, but should use ``get_regwall_list_read`` for display purposes.
+Similar to ``get_regwall_attempts``, but ``get_regwall_successes`` gets a list of the resources that were successful delivered to the user.
 
 .. code-block:: django
 
    {% load regwall_tags %}
 
-   {% get_regwall_list as regwall_list %}
-   {% get_regwall_list_read as regwall_list_read %}
+   {% get_regwall_attempts as regwall_attempts %}
+   {% get_regwall_successes as regwall_successes %}
    {% get_regwall_limit as regwall_limit %}
 
-   {% if regwall_list|length >= regwall_limit %}
-   <p>You read all {{ regwall_list_read|length }} of your {{ regwall_limit }} articles for {{ regwall_expire }} days.</p>
+   {% if regwall_attempts|length >= regwall_limit %}
+   <p>You read all {{ regwall_successes|length }} of your {{ regwall_limit }} articles for {{ regwall_expire }} days.</p>
    <ol>
-       {% for article in regwall_list_read %}
+       {% for article in regwall_successes %}
        <li><a href="{{ article.url }}">{{ article.headline }}</a></li>
        {% endfor %}
    </ol>
@@ -152,13 +150,13 @@ The result:
 
    {% load regwall_tags %}
 
-   {% get_regwall_list as regwall_list %}
-   {% get_regwall_list_read as regwall_list_read %}
+   {% get_regwall_attempts as regwall_attempts %}
+   {% get_regwall_successes as regwall_successes %}
    {% get_regwall_limit as regwall_limit %}
    {% get_regwall_expire as regwall_expire %}
 
-   {% if regwall_list_read|length > 0 %}
-   <p>You read {{ regwall_list_read|length }} of your {{ regwall_limit }} free article{{ regwall_limit|pluralize }} for {{ regwall_expire }} day{{ regwall_expire|pluralize }}. <a href="{% url 'login' %}">Log in or register to read unlimited articles</a>.</p>
+   {% if regwall_successes|length > 0 %}
+   <p>You read {{ regwall_successes|length }} of your {{ regwall_limit }} free article{{ regwall_limit|pluralize }} for {{ regwall_expire }} day{{ regwall_expire|pluralize }}. <a href="{% url 'login' %}">Log in or register to read unlimited articles</a>.</p>
    {% endif %}
 
 ``regwall/login.html``
@@ -176,13 +174,13 @@ The result:
 
    {% load regwall_tags %}
 
-   {% get_regwall_list as regwall_list %}
-   {% get_regwall_list_read as regwall_list_read %}
+   {% get_regwall_attempts as regwall_attempts %}
+   {% get_regwall_successes as regwall_successes %}
    {% get_regwall_limit as regwall_limit %}
    {% get_regwall_expire as regwall_expire %}
 
-   {% if regwall_list|length > regwall_limit %}
-   <p>You read {{ regwall_limit }} of your {{ regwall_limit }} free article{{ regwall_limit|pluralize }} for {{ regwall_expire }} day{{ regwall_expire|pluralize }}. Log in or register to read unlimited articles.</p>
+   {% if regwall_attempts|length >= regwall_limit %}
+   <p>You read {{ regwall_successes|length }} of your {{ regwall_limit }} free article{{ regwall_limit|pluralize }} for {{ regwall_expire }} day{{ regwall_expire|pluralize }}. Log in or register to read unlimited articles.</p>
    {% endif %}
 
 ``regwall/history.html``
@@ -200,14 +198,14 @@ The result:
 
    {% load i18n regwall_tags %}
 
-   {% get_regwall_list as regwall_list %}
-   {% get_regwall_list_read as regwall_list_read %}
+   {% get_regwall_attempts as regwall_attempts %}
+   {% get_regwall_successes as regwall_successes %}
    {% get_regwall_limit as regwall_limit %}
 
-   {% if regwall_list|length >= regwall_limit %}
+   {% if regwall_attempts|length >= regwall_limit %}
    <h2>{% trans 'You read these articles' %}</h2>
    <ol>
-       {% for article in regwall_list_read %}
+       {% for article in regwall_successes %}
        <li><a href="{{ article.url }}">{{ article.headline }}</a></li>
        {% endfor %}
    </ol>

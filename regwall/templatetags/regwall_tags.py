@@ -6,18 +6,15 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def get_regwall_list(context):
+def get_regwall_attempts(context):
     request = context['request']
-    return request.session.get('regwall_list', None)
+    return request.session.get('regwall', None).get('attempts', None)
 
 
 @register.simple_tag(takes_context=True)
-def get_regwall_list_read(context):
+def get_regwall_successes(context):
     request = context['request']
-    try:
-        return request.session['regwall_list'][:settings.REGWALL_LIMIT]
-    except KeyError:
-        return []
+    return request.session.get('regwall', None).get('successes', None)
 
 
 @register.simple_tag
