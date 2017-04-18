@@ -93,14 +93,15 @@ Gets a list of the attempted consumed resources. The mixin logs each attempt a u
 
    {% get_regwall_attempts as regwall_attempts %}
 
-   <p>You read {{ regwall_attempts|length }} free articles.</p>
+   <p>You tried to read {{ regwall_attempts|length }} free articles.</p>
 
 Use ``get_regwall_attempts`` to check against the result of ``get_regwall_limit``.
 
 .. code-block:: django
 
-   {% get_regwall_attempts as regwall_attempts %}
    {% get_regwall_limit as regwall_limit %}
+   {% get_regwall_expire as regwall_expire %}
+   {% get_regwall_attempts as regwall_attempts %}
 
    {% if regwall_attempts|length >= regwall_limit %}
    <p>You read all of your {{ regwall_limit }} articles for {{ regwall_expire }} days.</p>
@@ -115,9 +116,10 @@ Similar to ``get_regwall_attempts``, but ``get_regwall_successes`` gets a list o
 
    {% load regwall_tags %}
 
+   {% get_regwall_limit as regwall_limit %}
+   {% get_regwall_expire as regwall_expire %}
    {% get_regwall_attempts as regwall_attempts %}
    {% get_regwall_successes as regwall_successes %}
-   {% get_regwall_limit as regwall_limit %}
 
    {% if regwall_attempts|length >= regwall_limit %}
    <p>You read all {{ regwall_successes|length }} of your {{ regwall_limit }} articles for {{ regwall_expire }} days.</p>
