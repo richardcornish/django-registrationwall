@@ -13,7 +13,7 @@ Django Registration Wall
 
 .. image:: https://raw.githubusercontent.com/richardcornish/django-registrationwall/master/docs/_static/img/regwall-detail.png
 
-**Django Registration Wall** is a `Django <https://www.djangoproject.com/>`_ `mixin <https://docs.djangoproject.com/en/1.10/topics/class-based-views/mixins/>`_ `application <https://docs.djangoproject.com/en/1.10/intro/reusable-apps/>`_ that limits an `anonymous user <https://docs.djangoproject.com/en/1.9/ref/contrib/auth/#anonymous-users>`_'s access to content, after which the user is redirected to the `login URL <https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-LOGIN_URL>`_. The behavior is modeled after the common `paywall <https://en.wikipedia.org/wiki/Paywall>`_ scenario.
+**Django Registration Wall** is a `Django <https://www.djangoproject.com/>`_ `mixin <https://docs.djangoproject.com/en/1.11/topics/class-based-views/mixins/>`_ `application <https://docs.djangoproject.com/en/1.11/intro/reusable-apps/>`_ that limits an `anonymous user <https://docs.djangoproject.com/en/1.11/ref/contrib/auth/#anonymous-users>`_'s access to content, after which the user is redirected to the `login URL <https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-LOGIN_URL>`_. The behavior is modeled after the common `paywall <https://en.wikipedia.org/wiki/Paywall>`_ scenario.
 
 Fake news articles credit goes to The Onion.
 
