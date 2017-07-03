@@ -50,7 +50,7 @@ class RaiseRegWallMixin(AccessMixin):
         self.request.session.modified = True
 
     def is_authenticated(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated
 
     def is_social(self):
         try:
