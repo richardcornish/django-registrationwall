@@ -24,38 +24,30 @@ class RaiseRegWallMixin(AccessMixin):
         social_list.extend(['www.' + social for social in social_list])
         return social_list
 
-    def get_regwall_list(self, list_name, **kwargs):
+    def get_or_create_regwall_list(self, list_name):
         try:
-            request = kwargs['request']
-        except KeyError:
-            request = self.request
-        try:
-            regwall = request.session['regwall']
+            regwall = self.request.session['regwall']
         except KeyError:
             seconds = self.get_expire_seconds()
-            request.session.set_expiry(seconds)
-            request.session['regwall'] = {}
-            regwall = request.session['regwall']
+            self.request.session.set_expiry(seconds)
+            self.request.session['regwall'] = {}
+            self.request.session.modified = True
+            regwall = self.request.session['regwall']
         try:
             return regwall[list_name]
         except KeyError:
             regwall[list_name] = []
             return regwall[list_name]
 
-    def increment_regwall_list(self, list_name, **kwargs):
-        try:
-            request = kwargs['request']
-        except KeyError:
-            request = self.request
+    def increment_regwall_list(self, regwall_list):
         obj = self.get_object()
-        regwall_list = self.get_regwall_list(list_name)
         regwall_list.append({
             'app_label': obj._meta.app_label,
             'id': obj.id,
             'headline': obj.headline or obj.title or obj.name or '',
             'url': obj.get_absolute_url(),
         })
-        request.session.modified = True
+        self.request.session.modified = True
 
     def is_authenticated(self):
         try:
@@ -70,21 +62,21 @@ class RaiseRegWallMixin(AccessMixin):
             return False
         return url_tuple.netloc in self.get_social_list()
 
-    def is_under_limit(self, list_name):
-        regwall_list = self.get_regwall_list(list_name)
+    def is_under_limit(self, regwall_list):
         return len(regwall_list) <= settings.REGWALL_LIMIT
 
-    def has_visited(self, list_name):
+    def has_visited(self, successes_list):
         obj = self.get_object()
-        regwall_list = self.get_regwall_list(list_name)
-        value_list = [article[key] for article in regwall_list for key in article]
+        value_list = [article[key] for article in successes_list for key in article]
         return obj.get_absolute_url() in value_list
 
     def dispatch(self, request, *args, **kwargs):
-        if not self.is_authenticated() and not self.is_social() and not self.has_visited('successes'):
-            self.increment_regwall_list('attempts')
-            if self.is_under_limit('attempts'):
-                self.increment_regwall_list('successes')
+        successes_list = self.get_or_create_regwall_list('successes')
+        if not self.is_authenticated() and not self.is_social() and not self.has_visited(successes_list):
+            attempts_list = self.get_or_create_regwall_list('attempts')
+            self.increment_regwall_list(attempts_list)
+            if self.is_under_limit(attempts_list):
+                self.increment_regwall_list(successes_list)
             else:
                 return self.handle_no_permission()
         return super(RaiseRegWallMixin, self).dispatch(request, *args, **kwargs)

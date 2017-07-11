@@ -9,15 +9,13 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def get_regwall_attempts(context):
     request = context['request']
-    mixin = mixins.RaiseRegWallMixin()
-    return mixin.get_regwall_list('attempts', request=request)
+    return request.session['regwall']['attempts']
 
 
 @register.simple_tag(takes_context=True)
 def get_regwall_successes(context):
     request = context['request']
-    mixin = mixins.RaiseRegWallMixin()
-    return mixin.get_regwall_list('successes', request=request)
+    return request.session['regwall']['successes']
 
 
 @register.simple_tag
