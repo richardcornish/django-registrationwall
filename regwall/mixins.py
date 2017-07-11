@@ -24,21 +24,29 @@ class RaiseRegWallMixin(AccessMixin):
         social_list.extend(['www.' + social for social in social_list])
         return social_list
 
-    def get_regwall_list(self, list_name):
+    def get_regwall_list(self, list_name, **kwargs):
         try:
-            regwall = self.request.session['regwall']
+            request = kwargs['request']
+        except KeyError:
+            request = self.request
+        try:
+            regwall = request.session['regwall']
         except KeyError:
             seconds = self.get_expire_seconds()
-            self.request.session.set_expiry(seconds)
-            self.request.session['regwall'] = {}
-            regwall = self.request.session['regwall']
+            request.session.set_expiry(seconds)
+            request.session['regwall'] = {}
+            regwall = request.session['regwall']
         try:
             return regwall[list_name]
         except KeyError:
             regwall[list_name] = []
             return regwall[list_name]
 
-    def increment_regwall_list(self, list_name):
+    def increment_regwall_list(self, list_name, **kwargs):
+        try:
+            request = kwargs['request']
+        except KeyError:
+            request = self.request
         obj = self.get_object()
         regwall_list = self.get_regwall_list(list_name)
         regwall_list.append({
@@ -47,7 +55,7 @@ class RaiseRegWallMixin(AccessMixin):
             'headline': obj.headline or obj.title or obj.name or '',
             'url': obj.get_absolute_url(),
         })
-        self.request.session.modified = True
+        request.session.modified = True
 
     def is_authenticated(self):
         return self.request.user.is_authenticated

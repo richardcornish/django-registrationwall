@@ -1,5 +1,6 @@
 from django import template
 
+from .. import mixins
 from .. import settings
 
 register = template.Library()
@@ -8,13 +9,15 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def get_regwall_attempts(context):
     request = context['request']
-    return request.session.get('regwall', None).get('attempts', None)
+    mixin = mixins.RaiseRegWallMixin()
+    return mixin.get_regwall_list('attempts', request=request)
 
 
 @register.simple_tag(takes_context=True)
 def get_regwall_successes(context):
     request = context['request']
-    return request.session.get('regwall', None).get('successes', None)
+    mixin = mixins.RaiseRegWallMixin()
+    return mixin.get_regwall_list('successes', request=request)
 
 
 @register.simple_tag
