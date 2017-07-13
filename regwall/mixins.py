@@ -71,9 +71,9 @@ class RaiseRegWallMixin(AccessMixin):
         return obj.get_absolute_url() in value_list
 
     def dispatch(self, request, *args, **kwargs):
+        attempts_list = self.get_or_create_regwall_list('attempts')
         successes_list = self.get_or_create_regwall_list('successes')
         if not self.is_authenticated() and not self.is_social() and not self.has_visited(successes_list):
-            attempts_list = self.get_or_create_regwall_list('attempts')
             self.increment_regwall_list(attempts_list)
             if self.is_under_limit(attempts_list):
                 self.increment_regwall_list(successes_list)
