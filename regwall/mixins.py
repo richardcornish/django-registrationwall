@@ -1,14 +1,11 @@
 from __future__ import unicode_literals
 
 try:
-    from urllib.parse import urlparse
-except ImportError:  # Python 2
-    from urlparse import urlparse
-
-try:
     from django.contrib.auth.mixins import AccessMixin
 except ImportError:
     raise ImportError('Django Registration Wall requires Django 1.9 or greater.')
+
+import tldextract
 
 from . import settings
 
@@ -53,14 +50,12 @@ class RaiseRegWallMixin(AccessMixin):
 
     @property
     def is_social(self):
-        social_list = list(settings.REGWALL_SOCIAL)
-        social_list.extend(['www.' + social for social in social_list])
         try:
             referer = self.request.META['HTTP_REFERER']
         except KeyError:
             return False
-        url_tuple = urlparse(referer)
-        return url_tuple.netloc in social_list
+        ext = tldextract.extract(referer)
+        return ext.domain in settings.REGWALL_SOCIAL
 
     @property
     def has_visited(self):
