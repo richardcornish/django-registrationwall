@@ -34,7 +34,7 @@ The mixin resets after ``30`` days by default.
 ``REGWALL_SOCIAL``
 ==================
 
-A list of strings of hosts of whose referral does not increment the consumed resources count. In other words, visitors coming from these domains are not penalized. Previously, the app used a rudimentary method of domain checking with the |urlparse|_/|urllib_parse|_ module. Because URLs vary so widely in construction, the app now uses the `tldextract <https://pypi.python.org/pypi/tldextract>`_ package to accurately extract the domain. Therefore, this setting should contain only `domain names <https://en.wikipedia.org/wiki/Domain_name>`_ and not `top-level domains <https://en.wikipedia.org/wiki/Top-level_domain>`_, e.g. `['google', 'facebook', 'twitter']` and *not* `['google.com', 'facebook.com', 'twitter.com']`.
+A list of strings of domains whose referral does not increment the consumed resources count. In other words, visitors coming from these domains are not penalized. Previously, the app used a rudimentary method of domain checking with the |urlparse|_/|urllib_parse|_ modules. Because URLs vary so widely in construction, the app now uses the `tldextract <https://pypi.python.org/pypi/tldextract>`_ package to accurately extract the domain. Therefore, this setting should contain only `domains <https://en.wikipedia.org/wiki/Domain_name>`_ and not `top-level domains <https://en.wikipedia.org/wiki/Top-level_domain>`_, e.g. ``['google', 'facebook', 'twitter']`` and *not* ``['google.com', 'facebook.com', 'twitter.com']``.
 
 The mixin allows referrals from Google, Facebook, and Twitter by default.
 
