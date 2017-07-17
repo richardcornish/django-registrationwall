@@ -7,7 +7,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='django-registrationwall',
-    version='0.1.4',
+    version='0.1.5',
     description='A Django mixin application to raise a registration or paywall',
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     author='Richard Cornish',
