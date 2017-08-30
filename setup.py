@@ -9,14 +9,14 @@ setup(
     name='django-registrationwall',
     version='0.1.5',
     description='A Django mixin application to raise a registration or paywall',
-    long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
+    long_description=open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.rst')).read(),
     author='Richard Cornish',
     author_email='rich@richardcornish.com',
     url='https://github.com/richardcornish/django-registrationwall',
-    license='BSD License',
+    license='BSD',
     zip_safe=False,
     include_package_data=True,
-    packages=find_packages(),
+    packages=find_packages(exclude=('tests',)),
     install_requires=[
         'tldextract'
     ],
